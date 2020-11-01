@@ -1,6 +1,6 @@
 # Umbraco Forms 8.5.4 regression
 
-When used with TinyMCE, Umbraco Forms 8.5.4 appears to save the result of a failed server-side validation so that the error cannot be corrected.
+When used with TinyMCE, Umbraco Forms 8.5.4 appears to save the result of a failed server-side validation so that the error cannot be corrected. This is logged as [Issue #441 ](https://github.com/umbraco/Umbraco.Forms.Issues/issues/441).
 
 This solution includes the same Umbraco code and config with Umbraco Forms 8.5.3 and Umbraco Forms 8.5.4. In both cases the admin user is `test@test.com` and the password is `testtesttest`.
 
