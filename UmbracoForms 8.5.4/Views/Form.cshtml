@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Form>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = null;
+    var xml = new System.Xml.XmlDocument();
+    xml.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "packages.config"));
+    var node = xml.SelectSingleNode("/packages/package[@id='UmbracoForms']");
+    var version = node.Attributes["version"].Value;
+}
+<html>
+<head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/umbraco/lib/tinymce/tinymce.min.js"></script>
+</head>
+<body>
+    <h1>@Model.Name</h1>
+    <p>Umbraco Forms version @version</p>
+    @Umbraco.RenderMacro("renderUmbracoForm", new { FormGuid = Model.Value("formPicker"), FormTheme = "default", ExcludeScripts = "1" })
+    <script>
+        tinymce.init({
+            selector: "textarea",
+            theme_url: "/umbraco/lib/tinymce/themes/modern/theme.min.js",
+            skin_url: "/umbraco/lib/tinymce/skins/lightgray",
+            statusbar: false,
+            height: 300,
+            menubar: false,
+            toolbar: "bold italic",
+        });
+    </script>
+</body>
+</html>

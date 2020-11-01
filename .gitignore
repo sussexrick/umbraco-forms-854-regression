@@ -1,0 +1,8 @@
+packages
+bin
+.vs
+*.user
+obj
+umbraco
+TEMP
+Logs
